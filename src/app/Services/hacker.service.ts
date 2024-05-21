@@ -3,7 +3,7 @@ import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { StoryDTO } from '../DTO/StoryDTO';
 
-const baseUrl:string = "https://localhost:7180/HackerNews";
+const baseUrl:string = "https://localhost:7117/HackerNews";
 
 @Injectable({
   providedIn: 'root',
