@@ -1,0 +1,7 @@
+export interface StoryDTO {
+  author: string;
+  comments: number;
+  url:string | null;
+  creationTime: string;
+  title:string;
+}

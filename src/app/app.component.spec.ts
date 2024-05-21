@@ -1,11 +1,35 @@
-import { TestBed } from '@angular/core/testing';
+import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { AppComponent } from './app.component';
+import { HackerService } from './Services/hacker.service';
+import { HttpClientTestingModule, HttpTestingController } from '@angular/common/http/testing';
+import { Type } from '@angular/core';
+import { NewsGridComponent } from './Components/news-grid/news-grid.component';
+import { RouterOutlet } from '@angular/router';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 describe('AppComponent', () => {
+  let fixture:ComponentFixture<AppComponent>;
+  let component:AppComponent;
+  let httpMock : HttpTestingController;
   beforeEach(async () => {
-    await TestBed.configureTestingModule({
-      imports: [AppComponent],
-    }).compileComponents();
+    TestBed.configureTestingModule({
+      imports: [AppComponent,HttpClientTestingModule,NewsGridComponent,BrowserAnimationsModule],
+      providers:[]
+    });
+
+    await TestBed.compileComponents();
+    fixture = TestBed.createComponent(AppComponent);
+
+    component = fixture.componentInstance;
+    httpMock = fixture.debugElement.injector.get<HttpTestingController>(HttpTestingController as Type<HttpTestingController>)
+    
+    fixture.detectChanges();
+  });
+
+  it('should create', () => {
+    const fixture = TestBed.createComponent(AppComponent);
+    const app = fixture.componentInstance;
+    expect(app).toBeTruthy();
   });
 
   it('should create the app', () => {
@@ -20,10 +44,4 @@ describe('AppComponent', () => {
     expect(app.title).toEqual('HackerNewsUI');
   });
 
-  it('should render title', () => {
-    const fixture = TestBed.createComponent(AppComponent);
-    fixture.detectChanges();
-    const compiled = fixture.nativeElement as HTMLElement;
-    expect(compiled.querySelector('h1')?.textContent).toContain('Hello, HackerNewsUI');
-  });
 });
